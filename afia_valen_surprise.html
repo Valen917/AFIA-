@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0f5">
+<title>A little note for Afia</title>
+<style>
+:root{--pink:#f6a9c4;--deep:#a83262;--cream:#fff9fb;--ink:#573344}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 20% 15%,#ffe0eb,transparent 35%),linear-gradient(145deg,#fff7fa,#fce4ed);font-family:Georgia,'Times New Roman',serif;color:var(--ink);overflow-x:hidden}
+main{width:min(100%,560px);text-align:center;position:relative;z-index:1}
+.kicker{font:600 11px/1.4 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#b65b7e}
+h1{font-size:clamp(34px,8vw,54px);font-weight:normal;margin:12px 0 8px;color:var(--deep)}
+.subtitle{font-size:17px;line-height:1.6;margin:0 auto 26px;max-width:390px}
+.envelope-wrap{margin:24px auto 18px;width:min(100%,360px);height:240px;position:relative;perspective:900px}
+.envelope{position:absolute;inset:34px 0 0;background:#f7b6cb;border-radius:8px;box-shadow:0 18px 38px #9b47612b;cursor:pointer;outline:none}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,#fbd1df,#ed91b0);clip-path:polygon(0 0,50% 58%,100% 0);transform-origin:top;transition:transform .8s ease;z-index:4;border-radius:8px 8px 0 0}
+.envelope:after{content:"";position:absolute;inset:0;background:linear-gradient(35deg,#f3a5bf,#f9c7d8);clip-path:polygon(0 100%,0 0,50% 58%,100% 0,100% 100%);border-radius:0 0 8px 8px;z-index:3}
+.seal{position:absolute;z-index:5;left:50%;top:58%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#b74470;color:white;display:grid;place-items:center;font-size:23px;box-shadow:0 4px 12px #8f31533b;transition:opacity .3s}
+.letter{position:absolute;z-index:2;left:7%;right:7%;bottom:8px;height:190px;background:var(--cream);border-radius:7px;padding:20px 18px;box-shadow:0 5px 16px #9b476122;transition:transform .8s ease;display:flex;flex-direction:column;justify-content:center}
+.letter p{margin:5px 0;font-size:17px;line-height:1.55}
+.envelope.open:before{transform:rotateX(180deg);z-index:1}
+.envelope.open .letter{transform:translateY(-115px);z-index:5}
+.envelope.open .seal{opacity:0;pointer-events:none}
+.hint{font:13px system-ui,sans-serif;color:#986176;margin:8px 0 28px}
+.note{display:none;background:#fffafc;border:1px solid #f4cfdd;border-radius:18px;padding:28px 24px;margin:0 auto;box-shadow:0 14px 36px #9b47611a;animation:rise .65s ease}
+.note.show{display:block}
+.note h2{font-size:30px;font-weight:normal;color:var(--deep);margin:0 0 16px}
+.note p{font-size:18px;line-height:1.75;margin:12px 0}
+.question{font-size:22px!important;color:var(--deep);margin-top:22px!important}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+button{border:0;border-radius:999px;padding:12px 22px;font:600 14px system-ui,sans-serif;cursor:pointer}
+.yes{background:#b74470;color:white;box-shadow:0 5px 14px #b7447033}
+.later{background:#f8e4ec;color:#8e4561}
+.response{min-height:28px;color:#a83262;font:15px system-ui,sans-serif;margin-top:16px}
+footer{font:12px system-ui,sans-serif;color:#a8798c;margin-top:24px}
+.heart{position:fixed;bottom:-30px;opacity:.45;animation:float 9s linear infinite;pointer-events:none}
+@keyframes float{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+.confession-art{height:150px;max-width:360px;margin:0 auto 10px;position:relative;overflow:hidden}
+.bow{position:absolute;left:22px;top:28px;width:92px;height:100px;border:5px solid #b74470;border-left-color:transparent;border-radius:0 100% 100% 0;transform:rotate(0deg);filter:drop-shadow(0 3px 2px #b7447022)}
+.bow:after{content:"";position:absolute;left:1px;top:0;height:100%;width:2px;background:#c58a9f;transform:rotate(-5deg);transform-origin:top}
+.arrow{position:absolute;left:72px;top:73px;width:190px;height:4px;background:#9c526d;border-radius:4px;transform:rotate(-7deg);transform-origin:left center;animation:shoot 2.8s ease-in-out infinite}
+.arrow:before{content:"";position:absolute;right:-1px;top:-6px;border-left:15px solid #b74470;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.arrow:after{content:"";position:absolute;left:0;top:-8px;width:14px;height:18px;background:linear-gradient(135deg,transparent 35%,#d88ba7 36% 55%,transparent 56%),linear-gradient(45deg,transparent 35%,#d88ba7 36% 55%,transparent 56%)}
+.target-heart{position:absolute;right:30px;top:39px;font-size:66px;color:#d65b88;text-shadow:0 5px 12px #d65b8833;animation:heartbeat 1.2s ease-in-out infinite}
+.spark{position:absolute;right:42px;top:18px;color:#d88ba7;font-size:20px;animation:twinkle 1.4s ease-in-out infinite}
+@keyframes shoot{0%,18%{transform:translateX(-12px) rotate(-7deg);opacity:0}30%{opacity:1}68%{transform:translateX(92px) rotate(-7deg);opacity:1}78%,100%{transform:translateX(110px) rotate(-7deg);opacity:0}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.13)}30%{transform:scale(1)}45%{transform:scale(1.09)}60%{transform:scale(1)}}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.8) rotate(0)}50%{opacity:1;transform:scale(1.25) rotate(18deg)}}
+@media(prefers-reduced-motion:reduce){.arrow,.target-heart,.spark{animation:none!important}}
+
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">A tiny surprise, made with care</div>
+  <h1>For Afia ♡</h1>
+  <p class="subtitle">Some words are nicer when they're delivered with a little surprise.</p>
+
+  <div class="envelope-wrap">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the letter">
+      <div class="letter"><p>To Afia,</p><p>There's a little note here, just for you…</p></div>
+      <div class="seal">♥</div>
+    </div>
+  </div>
+  <p class="hint" id="hint">Tap the envelope to open your letter</p>
+
+  <section class="note" id="note" aria-live="polite">
+
+    <div class="confession-art" aria-label="Animated arrow flying toward a heart">
+      <div class="bow"></div>
+      <div class="arrow"></div>
+      <div class="target-heart">♥</div>
+      <div class="spark">✦</div>
+    </div>
+    <p style="font:600 12px system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#b65b7e;margin:0 0 16px">A little courage, aimed your way</p>
+    <h2>Dear Afia,</h2>
+    <p>I have a little confession: I think I'm starting to fall for you. I wanted to tell you honestly, because you’ve become someone special to me.</p>
+    <p>Even from far away, a kind conversation can make an ordinary day feel a little brighter. I’d love to get to know you better, at your pace, with no pressure.</p>
+    <p class="question">I like you, Afia. Would you be open to seeing where this little story goes? ♡</p>
+    <div class="actions">
+      <button class="yes" id="yes">I'd like that ♡</button>
+      <button class="later" id="later">Let's take it slow</button>
+    </div>
+    <div class="response" id="response"></div>
+    <p style="font-size:14px;color:#a8798c;margin-top:22px">— Valen</p>
+  </section>
+  <footer>Made especially for Afia · with a little help from Valen</footer>
+</main>
+<script>
+const envelope=document.getElementById('envelope');
+const note=document.getElementById('note');
+const hint=document.getElementById('hint');
+function openLetter(){envelope.classList.add('open');hint.textContent='A little note, just for you';setTimeout(()=>note.classList.add('show'),450)}
+envelope.addEventListener('click',openLetter);
+envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}});
+document.getElementById('yes').addEventListener('click',()=>{document.getElementById('response').textContent='That made my day. Let’s make some lovely memories, one conversation at a time. ♡'});
+document.getElementById('later').addEventListener('click',()=>{document.getElementById('response').textContent='Of course. No rush at all — your comfort comes first. ♡'});
+for(let i=0;i<12;i++){const h=document.createElement('div');h.className='heart';h.textContent=['♡','♥','✧'][i%3];h.style.left=(Math.random()*100)+'%';h.style.animationDelay=(Math.random()*9)+'s';h.style.fontSize=(14+Math.random()*18)+'px';document.body.appendChild(h)}
+</script>
+</body>
+</html>
